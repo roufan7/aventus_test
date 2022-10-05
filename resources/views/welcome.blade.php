@@ -39,25 +39,25 @@
                                 <label for="string_1" class="form-label">String 1</label>
                                 <input type="text" class="form-control" id="string_1"
                                     placeholder="Enter Your String 1">
-                                    <div id="string1_text"></div>
+                                <div id="string1_text"></div>
                             </div>
                             <div class="mb-3">
                                 <label for="string_2" class="form-label">String 2</label>
                                 <input type="text" class="form-control" id="string_2"
                                     placeholder="Enter Your String 2">
-                                    <div id="string2_text"></div>
+                                <div id="string2_text"></div>
                             </div>
                             <div class="mb-3">
                                 <label for="string_3" class="form-label">String 3</label>
                                 <input type="text" class="form-control" id="string_3"
                                     placeholder="Enter Your String 3">
-                                    <div id="string3_text"></div>
+                                <div id="string3_text"></div>
                             </div>
                             <div class="mb-3">
                                 <label for="string_4" class="form-label">String 4</label>
                                 <input type="text" class="form-control" id="string_4"
                                     placeholder="Enter Your String 4">
-                                    <div id="string4_text"></div>
+                                <div id="string4_text"></div>
                             </div>
                         </div>
                     </div>
@@ -75,7 +75,11 @@
     <script>
         $(document).ready(function() {
             $('#check_btn').on('click', function() {
-                console.log('started')
+                if ($('#master_string').val() == '' || $('#string_1').val() == '' || $('#string_2')
+                    .val() == '' || $('#string_3').val() == '' || $('#string_4').val() == '') {
+                    alert("Please Fill all fields")
+                    return
+                }
                 $.ajax({
                     method: "post",
                     url: "{{ route('checkString') }}",
@@ -91,40 +95,32 @@
                     },
                     success: function(data) {
 
-                            var response = data.data;
-                            let string1 = document.getElementById("string1_text")
-                            let string2 = document.getElementById("string2_text")
-                            let string3 = document.getElementById("string3_text")
-                            let string4 = document.getElementById("string4_text")
-                            console.log(response)
-                            if(response[0] == true)
-                            {
-                                string1.innerHTML = 'Yes';
-                            }
-                            else{
-                                string1.innerHTML = 'No';
-                            }
-                            if(response[1] == true)
-                            {
-                                string2.innerHTML = 'Yes';
-                            }
-                            else{
-                                string2.innerHTML = 'No';
-                            }
-                            if(response[2] == true)
-                            {
-                                string3.innerHTML = 'Yes';
-                            }
-                            else{
-                                string3.innerHTML = 'No';
-                            }
-                            if(response[3] == true)
-                            {
-                                string4.innerHTML = 'Yes';
-                            }
-                            else{
-                                string4.innerHTML = 'No';
-                            }
+                        var response = data.data;
+                        let string1 = document.getElementById("string1_text")
+                        let string2 = document.getElementById("string2_text")
+                        let string3 = document.getElementById("string3_text")
+                        let string4 = document.getElementById("string4_text")
+                        console.log(response)
+                        if (response[0] == true) {
+                            string1.innerHTML = 'Yes';
+                        } else {
+                            string1.innerHTML = 'No';
+                        }
+                        if (response[1] == true) {
+                            string2.innerHTML = 'Yes';
+                        } else {
+                            string2.innerHTML = 'No';
+                        }
+                        if (response[2] == true) {
+                            string3.innerHTML = 'Yes';
+                        } else {
+                            string3.innerHTML = 'No';
+                        }
+                        if (response[3] == true) {
+                            string4.innerHTML = 'Yes';
+                        } else {
+                            string4.innerHTML = 'No';
+                        }
 
 
                     }
